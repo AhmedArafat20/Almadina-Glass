@@ -4,7 +4,7 @@
 
 import Projects from "../../components/Projects"
 import Services from "../../components/Servicess"
-import Map from  "../../components/map"
+import Map from  "../../components/Map"
 
 function Home() {
   return (
