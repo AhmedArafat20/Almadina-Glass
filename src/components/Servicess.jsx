@@ -4,7 +4,7 @@ import 'aos/dist/aos.css';
 
 const Services = () => {
   useEffect(() => {
-    AOS.init({ duration: 1000 }); // زمن الحركة بالألف ميلي ثانية
+    AOS.init({ duration: 1000 }); 
   }, []);
 
   return (

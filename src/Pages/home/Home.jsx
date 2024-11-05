@@ -3,7 +3,7 @@
 // import Maps from './components/Map';
 
 import Projects from "../../components/Projects"
-import Services from "../../components/services"
+import Services from "../../components/Servicess"
 import Map from  "../../components/map"
 
 function Home() {
