@@ -21,7 +21,7 @@ function OurServe() {
           className="block rounded-lg arabic-text bg-white p-4 text-gray-800 shadow-md hover:bg-gray-200"
         >
           <h5 className="mb-2 text-xl font-medium leading-tight">
-            {/* يمكنك إضافة عنوان هنا إذا كان موجود */}
+          {}
           </h5>
           <p className="mb-4 text-base">{card.content}</p>
         </div>

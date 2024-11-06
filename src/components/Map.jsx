@@ -2,32 +2,58 @@ import emailjs from 'emailjs-com';
 import { useState } from 'react';
 
 const Contact = () => {
-  const [statusMessage, setStatusMessage] = useState(''); // الحالة لتخزين الرسالة
-  const [statusClass, setStatusClass] = useState(''); // حالة لتخزين فئة CSS للرسالة
-  const [isLoading, setIsLoading] = useState(false); // حالة التحميل لإظهار رسالة أثناء الإرسال
+  const [statusMessage, setStatusMessage] = useState('');   
+  const [statusClass, setStatusClass] = useState(''); 
+  const [isLoading, setIsLoading] = useState(false); 
+  const [errors, setErrors] = useState({}); 
+
+  const validateForm = (e) => {
+    const newErrors = {};
+    
+    if (!e.target.name.value) {
+      newErrors.name = "الاسم مطلوب";
+    }
+    if (!e.target.phone.value) {
+      newErrors.phone = "الهاتف مطلوب";
+    }
+    if (!e.target.email.value) {
+      newErrors.email = "البريد الإلكتروني مطلوب";
+    } else if (!/\S+@\S+\.\S+/.test(e.target.email.value)) {
+      newErrors.email = "البريد الإلكتروني غير صالح";
+    }
+    if (!e.target.message.value) {
+      newErrors.message = "الرسالة مطلوبة";
+    }
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0; 
+  };
 
   const sendEmail = (e) => {
     e.preventDefault();
-    setIsLoading(true); // بدأ الإرسال
-    setStatusMessage(''); // إخفاء أي رسالة سابقة
-    setStatusClass(''); // إعادة تعيين الفئة عند بداية الإرسال
+    if (!validateForm(e)) {
+      return; 
+    }
+
+    setIsLoading(true); 
+    setStatusMessage(''); 
+    setStatusClass(''); 
 
     emailjs.sendForm(
-      'service_s6q46qj',  // استبدل بـ service ID من EmailJS
-      'template_u24kc6k', // استبدل بـ template ID من EmailJS
+      'service_s6q46qj',  
+      'template_u24kc6k', 
       e.target,
-      'cd6XzKb4a3kF-2J8k'      // استبدل بـ user ID من EmailJS
+      'cd6XzKb4a3kF-2J8k'
     )
     .then((result) => {
       console.log(result.text);
       setStatusMessage('تم إرسال الرسالة بنجاح!');
-      setStatusClass('text-green-500'); // اللون الأخضر للنجاح باستخدام Tailwind CSS
-      setIsLoading(false); // إيقاف التحميل
+      setStatusClass('text-green-500'); 
+      setIsLoading(false); 
     }, (error) => {
       console.log(error.text);
       setStatusMessage('حدث خطأ أثناء الإرسال.');
-      setStatusClass('text-red-500'); // اللون الأحمر للفشل باستخدام Tailwind CSS
-      setIsLoading(false); // إيقاف التحميل
+      setStatusClass('text-red-500'); 
+      setIsLoading(false); 
     });
   };
 
@@ -39,18 +65,22 @@ const Contact = () => {
           <div className="mb-4">
             <label className="block mb-2" htmlFor="name">الاسم</label>
             <input type="text" id="name" name="name" className="w-full p-2 arabic-text border border-gray-300 rounded" required />
+            {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
           </div>
           <div className="mb-4">
             <label className="block mb-2" htmlFor="phone">الهاتف</label>
             <input type="tel" id="phone" name="phone" className="w-full arabic-text p-2 border border-gray-300 rounded" required />
+            {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone}</p>}
           </div>
           <div className="mb-4">
             <label className="block mb-2" htmlFor="email">البريد الإلكتروني</label>
             <input type="email" id="email" name="email" className="w-full arabic-text p-2 border border-gray-300 rounded" required />
+            {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
           </div>
           <div className="mb-4">
             <label className="block mb-2" htmlFor="message">الرسالة</label>
             <textarea id="message" name="message" className="w-full arabic-text p-2 border border-gray-300 rounded" required></textarea>
+            {errors.message && <p className="text-red-500 text-sm mt-1">{errors.message}</p>}
           </div>
           <button type="submit" className="bg-blue-500 arabic-text text-white px-4 py-2 rounded" disabled={isLoading}>
             {isLoading ? 'جاري الإرسال...' : 'إرسال'}
