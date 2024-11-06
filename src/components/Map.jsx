@@ -5,10 +5,10 @@ const Contact = () => {
   const sendEmail = (e) => {
     e.preventDefault();
     emailjs.sendForm(
-      'service_354xzhi',  // استبدل بـ service ID من EmailJS
-      'template_grhkcn9', // استبدل بـ template ID من EmailJS
+      'service_s6q46qj',  // استبدل بـ service ID من EmailJS
+      'template_u24kc6k', // استبدل بـ template ID من EmailJS
       e.target,
-      'law1l5cSCnMKd5XaN'      // استبدل بـ user ID من EmailJS
+      'cd6XzKb4a3kF-2J8k'      // استبدل بـ user ID من EmailJS
     )
     .then((result) => {
       console.log(result.text);
