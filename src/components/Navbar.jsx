@@ -55,7 +55,9 @@ const Navbar = () => {
         } transition-colors duration-300`}
       >
         <div className="flex arabic-text flex-wrap items-center justify-between">
-          <div className="text-3xl font-bold hidden md:block arabic-text">المدينه للزجاج</div>
+          <div className="text-3xl font-bold hidden md:block arabic-text"> 
+            <a href="/" className='hover:text-[#c09858]' >المدينه للزجاج</a>
+          </div>
 
           <div className="flex md:hidden">
             <button id="hamburger" onClick={toggleMenu}>
@@ -83,21 +85,21 @@ const Navbar = () => {
           >
             <NavLink
               to="/"
-              className="block md:inline-block hover:text-blue-500 px-3 py-3"
+              className="block md:inline-block hover:text-[#c09858] px-3 py-3"
               onClick={() => setMenuOpen(false)}
             >
               الصفحه الرئيسيه
             </NavLink>
             <NavLink
               to="/ourserve"
-              className="block md:inline-block hover:text-blue-500 px-3 py-3"
+              className="block md:inline-block  hover:text-[#c09858] px-3 py-3"
               onClick={() => setMenuOpen(false)}
             >
               خدماتنا
             </NavLink>
             <a
               href="#map-section"
-              className="block md:inline-block hover:text-blue-500 px-3 py-3"
+              className="block md:inline-block  hover:text-[#c09858] px-3 py-3"
               onClick={() => setMenuOpen(false)}
             >
               موقعنا
@@ -107,7 +109,7 @@ const Navbar = () => {
           <div className="hidden md:flex items-center md:rounded">
             <a
               href="tel:+9660506172365"
-              className="flex items-center h-10 w-30 rounded-md bg-[#c8a876] text-white font-medium p-2"
+              className="flex items-center h-10 w-30 rounded-md bg-[#c8a876]  hover:bg-[#c09858] text-white font-medium p-2"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
