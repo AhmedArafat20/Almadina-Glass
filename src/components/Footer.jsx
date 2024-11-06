@@ -4,9 +4,9 @@ import { FaFacebook, FaInstagram, FaWhatsapp } from 'react-icons/fa';
 const Footer = () => {
   return (
     <footer className="flex justify-between items-center p-4 bg-gray-100 " style={{ height: '100px' }}>
-      <div className="text-lg font-bold">شركة المدينه</div>
-          <div className="text-lg">
-              <a href="tel:+9660506172365">0506172365</a>
+      <div className="text-lg font-bold hover:text-[#c09858]">شركة المدينه</div>
+          <div className="text-lg ">
+              <a href="tel:+9660506172365" className='hover:text-blue-600'>0506172365</a>
       </div>
       <div className="flex space-x-4">
         <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">

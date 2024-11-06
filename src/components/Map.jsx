@@ -1,9 +1,17 @@
-
 import emailjs from 'emailjs-com';
+import { useState } from 'react';
 
 const Contact = () => {
+  const [statusMessage, setStatusMessage] = useState(''); // الحالة لتخزين الرسالة
+  const [statusClass, setStatusClass] = useState(''); // حالة لتخزين فئة CSS للرسالة
+  const [isLoading, setIsLoading] = useState(false); // حالة التحميل لإظهار رسالة أثناء الإرسال
+
   const sendEmail = (e) => {
     e.preventDefault();
+    setIsLoading(true); // بدأ الإرسال
+    setStatusMessage(''); // إخفاء أي رسالة سابقة
+    setStatusClass(''); // إعادة تعيين الفئة عند بداية الإرسال
+
     emailjs.sendForm(
       'service_s6q46qj',  // استبدل بـ service ID من EmailJS
       'template_u24kc6k', // استبدل بـ template ID من EmailJS
@@ -12,10 +20,14 @@ const Contact = () => {
     )
     .then((result) => {
       console.log(result.text);
-      alert("تم إرسال الرسالة بنجاح!");
+      setStatusMessage('تم إرسال الرسالة بنجاح!');
+      setStatusClass('text-green-500'); // اللون الأخضر للنجاح باستخدام Tailwind CSS
+      setIsLoading(false); // إيقاف التحميل
     }, (error) => {
       console.log(error.text);
-      alert("حدث خطأ أثناء الإرسال.");
+      setStatusMessage('حدث خطأ أثناء الإرسال.');
+      setStatusClass('text-red-500'); // اللون الأحمر للفشل باستخدام Tailwind CSS
+      setIsLoading(false); // إيقاف التحميل
     });
   };
 
@@ -40,8 +52,11 @@ const Contact = () => {
             <label className="block mb-2" htmlFor="message">الرسالة</label>
             <textarea id="message" name="message" className="w-full arabic-text p-2 border border-gray-300 rounded" required></textarea>
           </div>
-          <button type="submit" className="bg-blue-500 arabic-text text-white px-4 py-2 rounded">إرسال</button>
+          <button type="submit" className="bg-blue-500 arabic-text text-white px-4 py-2 rounded" disabled={isLoading}>
+            {isLoading ? 'جاري الإرسال...' : 'إرسال'}
+          </button>
         </form>
+        {statusMessage && <p className={`mt-4 text-lg ${statusClass}`}>{statusMessage}</p>} {/* عرض الرسالة مع الفئة */}
       </div>
       <div className="w-full md:w-1/2 p-4">
         <iframe
