@@ -151,7 +151,7 @@ const Navbar = () => {
             </h1>
             <p className="font-regular text-xl mb-8 mt-4">{displayedText}</p>
             <motion.a
-              href="tel:+9660506172365"
+              href="tel:+9660536833224"
               className="px-6 py-3 bg-[#c8a876] text-white font-medium rounded-full hover:bg-[#c09858] transition duration-200"
               initial={{ opacity: 0, x: -100 }}
               animate={{ opacity: 1, x: 0 }}
