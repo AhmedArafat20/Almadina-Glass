@@ -157,7 +157,7 @@ const Navbar = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1.5, delay: 0.5 }}
             >
-              اتصل بنا
+               0536833224
             </motion.a>
           </motion.div>
         </div>
